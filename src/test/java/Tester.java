@@ -1,4 +1,4 @@
-import com.Duvalov.Stack.LinkedStack;
+import com.Duvalov.Stack.LinkedStack.LinkedStack;
 import com.Duvalov.Exceptions.FullCollectionException;
 import com.Duvalov.Exceptions.WrongCapacityException;
 import com.Duvalov.Exceptions.ZeroCapacityException;
