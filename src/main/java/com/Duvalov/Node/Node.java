@@ -1,7 +1,7 @@
 package com.Duvalov.Node;
 
 /**
- * Nodes are used by LinkedStack.
+ * Nodes are used by LinkedStack and LinkedQueue.
  * Each object references to next object or null
  * and stores value of type
  * @param <T>
