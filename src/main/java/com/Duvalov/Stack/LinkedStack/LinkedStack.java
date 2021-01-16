@@ -19,11 +19,9 @@ public class LinkedStack<T> implements Stack<T> {
     private int capacity = 0;
 
     public LinkedStack() {
-        topNode = null;
     }
 
     public LinkedStack(int capacity) throws WrongCapacityException {
-        topNode = null;
         if (capacity > 0) {
             this.capacity = capacity;
         }
