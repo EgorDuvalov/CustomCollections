@@ -2,6 +2,7 @@ package com.Duvalov.Stack.StaticArrayStack;
 
 import com.Duvalov.Exceptions.EmptyCollectionException;
 import com.Duvalov.Exceptions.FullCollectionException;
+import com.Duvalov.Exceptions.WrongCapacityException;
 import com.Duvalov.Stack.Stack;
 
 import java.util.ArrayList;
@@ -17,7 +18,10 @@ public class StaticArrayStack<T> implements Stack<T> {
         this.values = new ArrayList<>(capacity);
     }
 
-    public StaticArrayStack(int capacity) {
+    public StaticArrayStack(int capacity) throws WrongCapacityException {
+        if (capacity <= 0) {
+            throw new WrongCapacityException();
+        }
         this.capacity = capacity;
         this.values = new ArrayList<>(capacity);
     }
@@ -29,7 +33,11 @@ public class StaticArrayStack<T> implements Stack<T> {
         }
     }
 
-    public StaticArrayStack(ArrayList<T> array, int capacity) throws FullCollectionException {
+    public StaticArrayStack(ArrayList<T> array, int capacity)
+            throws FullCollectionException, WrongCapacityException {
+        if (capacity <= 0) {
+            throw new WrongCapacityException();
+        }
         this.capacity = capacity;
         for (T element : array) {
             this.push(element);

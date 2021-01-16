@@ -1,7 +1,7 @@
 package com.Duvalov.Stack.DynamicArrayStack;
 
 import com.Duvalov.Exceptions.EmptyCollectionException;
-import com.Duvalov.Exceptions.FullCollectionException;
+import com.Duvalov.Exceptions.WrongCapacityException;
 import com.Duvalov.Stack.Stack;
 
 import java.util.ArrayList;
@@ -17,7 +17,10 @@ public class DynamicArrayStack<T> implements Stack<T> {
         this.values = new ArrayList<>(capacity);
     }
 
-    public DynamicArrayStack(int capacity) {
+    public DynamicArrayStack(int capacity) throws WrongCapacityException {
+        if (capacity <= 0) {
+            throw new WrongCapacityException();
+        }
         this.capacity = capacity;
         this.values = new ArrayList<>(capacity);
     }
@@ -29,7 +32,11 @@ public class DynamicArrayStack<T> implements Stack<T> {
         }
     }
 
-    public DynamicArrayStack(ArrayList<T> array, int capacity) throws FullCollectionException {
+    public DynamicArrayStack(ArrayList<T> array, int capacity)
+            throws WrongCapacityException {
+        if (capacity <= 0) {
+            throw new WrongCapacityException();
+        }
         this.capacity = capacity;
         for (T element : array) {
             this.push(element);
