@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Stack...
+ *
  * @param <T>
  */
 
@@ -49,19 +50,14 @@ public class LinkedStack<T> implements Stack<T> {
 
     public void push(T element) throws FullCollectionException {
         if (topNode == null) {
-            topNode = new Node<T>(element, null);
+            topNode = new Node<>(element, null);
             amount++;
 
         } else if (capacity != 0 && amount > capacity) {
             throw new FullCollectionException();
 
         } else {
-            Node<T> runner = topNode;
-            while (runner.hasNext()) {
-                runner = runner.getNextNode();
-            }
-            Node<T> newNode = new Node<T>(element, null);
-            runner.setNextNode(newNode);
+            topNode = new Node<>(element, topNode);
             amount++;
         }
     }
