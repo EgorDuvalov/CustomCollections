@@ -1,4 +1,4 @@
-package com.Duvalov.Stack.StaticArrayStack;
+package com.Duvalov.Stack.DynamicArrayStack;
 
 import com.Duvalov.Exceptions.EmptyCollectionException;
 import com.Duvalov.Exceptions.FullCollectionException;
@@ -6,30 +6,30 @@ import com.Duvalov.Stack.Stack;
 
 import java.util.ArrayList;
 
-public class StaticArrayStack<T> implements Stack<T> {
+public class DynamicArrayStack<T> implements Stack<T> {
     private ArrayList<T> values;
-    private final int capacity;
+    private int capacity;
     private int length;
     private static final int defaultCapacity = 10;
 
-    public StaticArrayStack() {
+    public DynamicArrayStack() {
         this.capacity = defaultCapacity;
         this.values = new ArrayList<>(capacity);
     }
 
-    public StaticArrayStack(int capacity) {
+    public DynamicArrayStack(int capacity) {
         this.capacity = capacity;
         this.values = new ArrayList<>(capacity);
     }
 
-    public StaticArrayStack(ArrayList<T> array) throws FullCollectionException {
+    public DynamicArrayStack(ArrayList<T> array) {
         this.capacity = defaultCapacity;
         for (T element : array) {
             this.push(element);
         }
     }
 
-    public StaticArrayStack(ArrayList<T> array, int capacity) throws FullCollectionException {
+    public DynamicArrayStack(ArrayList<T> array, int capacity) throws FullCollectionException {
         this.capacity = capacity;
         for (T element : array) {
             this.push(element);
@@ -37,9 +37,10 @@ public class StaticArrayStack<T> implements Stack<T> {
     }
 
     @Override
-    public void push(T element) throws FullCollectionException {
+    public void push(T element) {
         if (length == capacity) {
-            throw new FullCollectionException();
+            capacity += defaultCapacity + capacity / 2;
+            values.ensureCapacity(capacity);
         }
         values.add(element);
         length++;
