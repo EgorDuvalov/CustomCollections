@@ -1,4 +1,4 @@
-package com.Duvalov.Stack.LinkedStack;
+package com.Duvalov.Node;
 
 /**
  * Nodes are used by LinkedStack.

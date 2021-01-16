@@ -4,6 +4,7 @@ import com.Duvalov.Exceptions.EmptyCollectionException;
 import com.Duvalov.Exceptions.FullCollectionException;
 import com.Duvalov.Exceptions.WrongCapacityException;
 import com.Duvalov.Exceptions.ZeroCapacityException;
+import com.Duvalov.Node.Node;
 import com.Duvalov.Stack.Stack;
 
 import java.util.ArrayList;

@@ -1,13 +1,13 @@
-package com.Duvalov.Stack;
+package com.Duvalov.Queue;
 
 import com.Duvalov.Exceptions.EmptyCollectionException;
 import com.Duvalov.Exceptions.FullCollectionException;
 import com.Duvalov.Exceptions.ZeroCapacityException;
 
-public interface Stack<T> {
-    void push(T element) throws FullCollectionException;
+public interface Queue<T> {
+    void enqueue(T element) throws FullCollectionException;
 
-    T pop() throws EmptyCollectionException;
+    T dequeue() throws EmptyCollectionException;
 
     T peek() throws EmptyCollectionException;
 
