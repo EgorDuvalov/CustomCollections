@@ -47,7 +47,7 @@ public class LinkedQueue<T> implements Queue<T> {
     @Override
     public void enqueue(T element) throws ExceedCapacityException {
         if (topNode == null) {
-            topNode = new Node<>(element, null);
+            topNode = new Node<>(element);
             amount++;
 
         } else if (capacity != 0 && amount > capacity) {
@@ -56,10 +56,10 @@ public class LinkedQueue<T> implements Queue<T> {
         } else {
             Node<T> runner = topNode;
             while (runner.hasNext()) {
-                runner = runner.getNextNode();
+                runner = runner.getNext();
             }
-            Node<T> newNode = new Node<>(element, null);
-            runner.setNextNode(newNode);
+            Node<T> newNode = new Node<>(element);
+            runner.setNext(newNode);
             amount++;
         }
     }
@@ -70,7 +70,7 @@ public class LinkedQueue<T> implements Queue<T> {
             throw new EmptyCollectionException();
         }
         T value = topNode.getValue();
-        topNode = topNode.getNextNode();
+        topNode = topNode.getNext();
         return value;
     }
 
@@ -80,7 +80,7 @@ public class LinkedQueue<T> implements Queue<T> {
             throw new EmptyCollectionException();
         }
         T value = topNode.getValue();
-        topNode = topNode.getNextNode();
+        topNode = topNode.getNext();
         return value;
     }
 

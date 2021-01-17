@@ -50,7 +50,7 @@ public class LinkedStack<T> implements Stack<T> {
 
     public void push(T element) throws ExceedCapacityException {
         if (topNode == null) {
-            topNode = new Node<>(element, null);
+            topNode = new Node<>(element);
             amount++;
 
         } else if (capacity != 0 && amount > capacity) {
@@ -67,7 +67,7 @@ public class LinkedStack<T> implements Stack<T> {
             throw new EmptyCollectionException();
         }
         T value = topNode.getValue();
-        topNode = topNode.getNextNode();
+        topNode = topNode.getNext();
         return value;
     }
 
