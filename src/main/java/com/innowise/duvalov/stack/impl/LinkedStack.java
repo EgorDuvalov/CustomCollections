@@ -1,11 +1,10 @@
-package com.Duvalov.Stack.LinkedStack;
+package com.innowise.duvalov.stack.impl;
 
-import com.Duvalov.Exceptions.EmptyCollectionException;
-import com.Duvalov.Exceptions.FullCollectionException;
-import com.Duvalov.Exceptions.WrongCapacityException;
-import com.Duvalov.Exceptions.ZeroCapacityException;
-import com.Duvalov.Node.Node;
-import com.Duvalov.Stack.Stack;
+import com.innowise.duvalov.exception.EmptyCollectionException;
+import com.innowise.duvalov.exception.ExceedCapacityException;
+import com.innowise.duvalov.exception.IllegalCapacityValueException;
+import com.innowise.duvalov.node.Node;
+import com.innowise.duvalov.stack.Stack;
 
 import java.util.ArrayList;
 
@@ -23,39 +22,39 @@ public class LinkedStack<T> implements Stack<T> {
     public LinkedStack() {
     }
 
-    public LinkedStack(int capacity) throws WrongCapacityException {
+    public LinkedStack(int capacity) throws IllegalCapacityValueException {
         if (capacity > 0) {
             this.capacity = capacity;
         }
-        throw new WrongCapacityException();
+        throw new IllegalCapacityValueException();
     }
 
     public LinkedStack(ArrayList<T> array)
-            throws FullCollectionException {
+            throws ExceedCapacityException {
         for (T element : array) {
             push(element);
         }
     }
 
     public LinkedStack(ArrayList<T> array, int capacity)
-            throws FullCollectionException, WrongCapacityException {
+            throws ExceedCapacityException, IllegalCapacityValueException {
         if (capacity > 0) {
             this.capacity = capacity;
         } else {
-            throw new WrongCapacityException();
+            throw new IllegalCapacityValueException();
         }
         for (T element : array) {
             push(element);
         }
     }
 
-    public void push(T element) throws FullCollectionException {
+    public void push(T element) throws ExceedCapacityException {
         if (topNode == null) {
             topNode = new Node<>(element, null);
             amount++;
 
         } else if (capacity != 0 && amount > capacity) {
-            throw new FullCollectionException();
+            throw new ExceedCapacityException();
 
         } else {
             topNode = new Node<>(element, topNode);
@@ -87,9 +86,9 @@ public class LinkedStack<T> implements Stack<T> {
         return amount == 0;
     }
 
-    public boolean isFull() throws ZeroCapacityException {
+    public boolean isFull() throws IllegalCapacityValueException {
         if (capacity == 0) {
-            throw new ZeroCapacityException();
+            throw new IllegalCapacityValueException();
         }
         return amount == capacity;
     }

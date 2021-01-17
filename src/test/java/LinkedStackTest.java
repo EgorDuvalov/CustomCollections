@@ -1,16 +1,17 @@
-import com.Duvalov.Stack.LinkedStack.LinkedStack;
-import com.Duvalov.Exceptions.FullCollectionException;
-import com.Duvalov.Exceptions.WrongCapacityException;
-import com.Duvalov.Exceptions.ZeroCapacityException;
+import com.innowise.duvalov.exception.IllegalCapacityValueException;
+import com.innowise.duvalov.stack.impl.LinkedStack;
+import com.innowise.duvalov.exception.ExceedCapacityException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class Tester {
+public class LinkedStackTest {
     @Test
-    public void testLinkedSteck()
-            throws WrongCapacityException, FullCollectionException, ZeroCapacityException {
+    public void testLinkedStack()
+            throws IllegalCapacityValueException, ExceedCapacityException{
+        //TODO change testArr
         LinkedStack<Integer> test_1 = new LinkedStack<Integer>(10);
         ArrayList<Integer> testArr = new ArrayList<Integer>(10);
         for (int i = 0; i < 10; i++) {

@@ -1,8 +1,8 @@
-package com.Duvalov.Stack.DynamicArrayStack;
+package com.innowise.duvalov.stack.impl;
 
-import com.Duvalov.Exceptions.EmptyCollectionException;
-import com.Duvalov.Exceptions.WrongCapacityException;
-import com.Duvalov.Stack.Stack;
+import com.innowise.duvalov.exception.EmptyCollectionException;
+import com.innowise.duvalov.exception.IllegalCapacityValueException;
+import com.innowise.duvalov.stack.Stack;
 
 import java.util.ArrayList;
 
@@ -17,9 +17,9 @@ public class DynamicArrayStack<T> implements Stack<T> {
         this.values = new ArrayList<>(capacity);
     }
 
-    public DynamicArrayStack(int capacity) throws WrongCapacityException {
+    public DynamicArrayStack(int capacity) throws IllegalCapacityValueException {
         if (capacity <= 0) {
-            throw new WrongCapacityException();
+            throw new IllegalCapacityValueException();
         }
         this.capacity = capacity;
         this.values = new ArrayList<>(capacity);
@@ -33,9 +33,9 @@ public class DynamicArrayStack<T> implements Stack<T> {
     }
 
     public DynamicArrayStack(ArrayList<T> array, int capacity)
-            throws WrongCapacityException {
+            throws IllegalCapacityValueException {
         if (capacity <= 0) {
-            throw new WrongCapacityException();
+            throw new IllegalCapacityValueException();
         }
         this.capacity = capacity;
         for (T element : array) {

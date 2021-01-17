@@ -1,4 +1,4 @@
-package com.Duvalov.Node;
+package com.innowise.duvalov.node;
 
 /**
  * Nodes are used by LinkedStack and LinkedQueue.

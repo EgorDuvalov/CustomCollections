@@ -1,9 +1,9 @@
-package com.Duvalov.Stack.StaticArrayStack;
+package com.innowise.duvalov.stack.impl;
 
-import com.Duvalov.Exceptions.EmptyCollectionException;
-import com.Duvalov.Exceptions.FullCollectionException;
-import com.Duvalov.Exceptions.WrongCapacityException;
-import com.Duvalov.Stack.Stack;
+import com.innowise.duvalov.exception.EmptyCollectionException;
+import com.innowise.duvalov.exception.ExceedCapacityException;
+import com.innowise.duvalov.exception.IllegalCapacityValueException;
+import com.innowise.duvalov.stack.Stack;
 
 import java.util.ArrayList;
 
@@ -18,15 +18,15 @@ public class StaticArrayStack<T> implements Stack<T> {
         this.values = new ArrayList<>(capacity);
     }
 
-    public StaticArrayStack(int capacity) throws WrongCapacityException {
+    public StaticArrayStack(int capacity) throws IllegalCapacityValueException {
         if (capacity <= 0) {
-            throw new WrongCapacityException();
+            throw new IllegalCapacityValueException();
         }
         this.capacity = capacity;
         this.values = new ArrayList<>(capacity);
     }
 
-    public StaticArrayStack(ArrayList<T> array) throws FullCollectionException {
+    public StaticArrayStack(ArrayList<T> array) throws ExceedCapacityException {
         this.capacity = defaultCapacity;
         for (T element : array) {
             this.push(element);
@@ -34,9 +34,9 @@ public class StaticArrayStack<T> implements Stack<T> {
     }
 
     public StaticArrayStack(ArrayList<T> array, int capacity)
-            throws FullCollectionException, WrongCapacityException {
+            throws ExceedCapacityException, IllegalCapacityValueException {
         if (capacity <= 0) {
-            throw new WrongCapacityException();
+            throw new IllegalCapacityValueException();
         }
         this.capacity = capacity;
         for (T element : array) {
@@ -45,9 +45,9 @@ public class StaticArrayStack<T> implements Stack<T> {
     }
 
     @Override
-    public void push(T element) throws FullCollectionException {
+    public void push(T element) throws ExceedCapacityException {
         if (length == capacity) {
-            throw new FullCollectionException();
+            throw new ExceedCapacityException();
         }
         values.add(element);
         length++;

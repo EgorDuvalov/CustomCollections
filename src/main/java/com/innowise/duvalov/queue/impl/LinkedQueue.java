@@ -1,11 +1,10 @@
-package com.Duvalov.Queue.LinkedQueue;
+package com.innowise.duvalov.queue.impl;
 
-import com.Duvalov.Exceptions.EmptyCollectionException;
-import com.Duvalov.Exceptions.FullCollectionException;
-import com.Duvalov.Exceptions.WrongCapacityException;
-import com.Duvalov.Exceptions.ZeroCapacityException;
-import com.Duvalov.Node.Node;
-import com.Duvalov.Queue.Queue;
+import com.innowise.duvalov.exception.EmptyCollectionException;
+import com.innowise.duvalov.exception.ExceedCapacityException;
+import com.innowise.duvalov.exception.IllegalCapacityValueException;
+import com.innowise.duvalov.node.Node;
+import com.innowise.duvalov.queue.Queue;
 
 import java.util.ArrayList;
 
@@ -18,26 +17,26 @@ public class LinkedQueue<T> implements Queue<T> {
     public LinkedQueue() {
     }
 
-    public LinkedQueue(int capacity) throws WrongCapacityException {
+    public LinkedQueue(int capacity) throws IllegalCapacityValueException {
         if (capacity > 0) {
             this.capacity = capacity;
         }
-        throw new WrongCapacityException();
+        throw new IllegalCapacityValueException();
     }
 
     public LinkedQueue(ArrayList<T> array)
-            throws FullCollectionException {
+            throws ExceedCapacityException {
         for (T element : array) {
             enqueue(element);
         }
     }
 
     public LinkedQueue(ArrayList<T> array, int capacity)
-            throws FullCollectionException, WrongCapacityException {
+            throws ExceedCapacityException, IllegalCapacityValueException {
         if (capacity > 0) {
             this.capacity = capacity;
         } else {
-            throw new WrongCapacityException();
+            throw new IllegalCapacityValueException();
         }
         for (T element : array) {
             enqueue(element);
@@ -46,13 +45,13 @@ public class LinkedQueue<T> implements Queue<T> {
 
 
     @Override
-    public void enqueue(T element) throws FullCollectionException {
+    public void enqueue(T element) throws ExceedCapacityException {
         if (topNode == null) {
             topNode = new Node<>(element, null);
             amount++;
 
         } else if (capacity != 0 && amount > capacity) {
-            throw new FullCollectionException();
+            throw new ExceedCapacityException();
 
         } else {
             Node<T> runner = topNode;
@@ -97,9 +96,9 @@ public class LinkedQueue<T> implements Queue<T> {
 
 
     @Override
-    public boolean isFull() throws ZeroCapacityException {
+    public boolean isFull() throws IllegalCapacityValueException {
         if (capacity == 0) {
-            throw new ZeroCapacityException();
+            throw new IllegalCapacityValueException();
         }
         return amount == capacity;
     }

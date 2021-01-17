@@ -1,7 +1,6 @@
-package com.Duvalov.Exceptions;
+package com.innowise.duvalov.exception;
 
 public class EmptyCollectionException extends Exception{
     public EmptyCollectionException(){
-        System.out.println("Current collection is empty");
     }
 }

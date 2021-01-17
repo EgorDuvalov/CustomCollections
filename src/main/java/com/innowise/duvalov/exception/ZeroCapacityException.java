@@ -1,4 +1,4 @@
-package com.Duvalov.Exceptions;
+package com.innowise.duvalov.exception;
 
 public class ZeroCapacityException extends Exception {
     public ZeroCapacityException(){
