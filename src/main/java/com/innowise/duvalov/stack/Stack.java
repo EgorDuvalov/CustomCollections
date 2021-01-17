@@ -2,7 +2,8 @@ package com.innowise.duvalov.stack;
 
 import com.innowise.duvalov.exception.EmptyCollectionException;
 import com.innowise.duvalov.exception.ExceedCapacityException;
-import com.innowise.duvalov.exception.ZeroCapacityException;
+import com.innowise.duvalov.exception.IllegalCapacityValueException;
+
 
 public interface Stack<T> {
     void push(T element) throws ExceedCapacityException;
@@ -15,5 +16,5 @@ public interface Stack<T> {
 
     boolean isEmpty();
 
-    boolean isFull() throws ZeroCapacityException;
+    boolean isFull() throws IllegalCapacityValueException;
 }
