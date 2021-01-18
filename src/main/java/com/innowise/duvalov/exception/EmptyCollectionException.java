@@ -1,6 +1,8 @@
 package com.innowise.duvalov.exception;
 
-public class EmptyCollectionException extends Exception{
+import java.util.NoSuchElementException;
+
+public class EmptyCollectionException extends NoSuchElementException {
     public EmptyCollectionException(){
     }
 }

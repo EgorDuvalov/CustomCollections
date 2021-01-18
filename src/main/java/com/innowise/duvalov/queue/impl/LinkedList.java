@@ -28,7 +28,7 @@ public class LinkedList<T> implements Queue<T> {
         checkCapacityValue(capacity);
     }
 
-    public LinkedList(ArrayList<T> array) {
+    public LinkedList(T[] array) {
         for (T element : array) {
             capacity++;
             enqueue(element);

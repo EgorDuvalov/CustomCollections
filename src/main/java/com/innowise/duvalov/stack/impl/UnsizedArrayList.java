@@ -24,8 +24,9 @@ public class UnsizedArrayList<T> implements Stack<T> {
         this.values = new ArrayList<>(capacity);
     }
 
-    public UnsizedArrayList(List<T> array) {
-        this.capacity = defaultCapacity;
+    public UnsizedArrayList(T[] array) {
+        capacity=array.length;
+        this.values= new ArrayList<>(capacity);
         for (T element : array) {
             this.push(element);
         }

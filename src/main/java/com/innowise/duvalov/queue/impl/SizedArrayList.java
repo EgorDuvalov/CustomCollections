@@ -32,9 +32,10 @@ public class SizedArrayList<T> implements Queue<T> {
         this.values = new ArrayList<>(this.capacity);
     }
 
-    public SizedArrayList(Collection<T> array) {
+    public SizedArrayList(T[] array) {
+        capacity=array.length;
+        values=new ArrayList<>(capacity);
         for (T element : array) {
-            capacity++;
             this.enqueue(element);
         }
     }
@@ -54,8 +55,8 @@ public class SizedArrayList<T> implements Queue<T> {
             throw new EmptyCollectionException();
         }
         length--;
-        T value = values.get(length);
-        values.remove(length);
+        T value = values.get(0);
+        values.remove(0);
         return value;
     }
 
@@ -64,7 +65,7 @@ public class SizedArrayList<T> implements Queue<T> {
         if (length == 0) {
             throw new EmptyCollectionException();
         }
-        return values.get(length - 1);
+        return values.get(0);
     }
 
     @Override

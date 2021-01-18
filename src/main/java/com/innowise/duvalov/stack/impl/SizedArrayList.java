@@ -32,9 +32,10 @@ public class SizedArrayList<T> implements Stack<T> {
         this.values = new ArrayList<>(this.capacity);
     }
 
-    public SizedArrayList(Collection<T> array) {
+    public SizedArrayList(T[] array) {
+        capacity=array.length;
+        this.values= new ArrayList<>(capacity);
         for (T element : array) {
-            capacity++;
             this.push(element);
         }
     }

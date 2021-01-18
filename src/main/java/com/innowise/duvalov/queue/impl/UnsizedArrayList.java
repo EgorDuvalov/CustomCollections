@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Realisation of Queue based on
  * ArrayList with dynamic capacity
+ *
  * @param <T>
  */
 
@@ -24,8 +25,9 @@ public class UnsizedArrayList<T> implements Queue<T> {
         this.values = new ArrayList<>(capacity);
     }
 
-    public UnsizedArrayList(List<T> array) {
-        this.capacity = defaultCapacity;
+    public UnsizedArrayList(T[] array) {
+        capacity=array.length;
+        values=new ArrayList<>(capacity);
         for (T element : array) {
             this.enqueue(element);
         }
@@ -66,12 +68,13 @@ public class UnsizedArrayList<T> implements Queue<T> {
 
     @Override
     public boolean isEmpty() {
-        return length==0;
+        return length == 0;
     }
 
+    /*User can't affect capacity directly*/
     @Override
     public boolean isFull() {
-        return length==capacity;
+        return length == capacity;
     }
 
     public void ensureCapacity() {

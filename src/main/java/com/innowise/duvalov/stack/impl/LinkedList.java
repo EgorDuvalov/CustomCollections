@@ -27,7 +27,7 @@ public class LinkedList<T> implements Stack<T> {
         checkCapacityValue(capacity);
     }
 
-    public LinkedList(ArrayList<T> array) {
+    public LinkedList(T[] array) {
         for (T element : array) {
             push(element);
         }
