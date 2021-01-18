@@ -6,7 +6,6 @@ import com.innowise.duvalov.exception.IllegalCapacityValueException;
 import com.innowise.duvalov.stack.Stack;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -33,8 +32,8 @@ public class SizedArrayList<T> implements Stack<T> {
     }
 
     public SizedArrayList(T[] array) {
-        capacity=array.length;
-        this.values= new ArrayList<>(capacity);
+        capacity = array.length;
+        this.values = new ArrayList<>(capacity);
         for (T element : array) {
             this.push(element);
         }
