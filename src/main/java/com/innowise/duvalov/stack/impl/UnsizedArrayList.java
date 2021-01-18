@@ -1,7 +1,6 @@
 package com.innowise.duvalov.stack.impl;
 
 import com.innowise.duvalov.exception.EmptyCollectionException;
-import com.innowise.duvalov.exception.IllegalCapacityValueException;
 import com.innowise.duvalov.stack.Stack;
 
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.List;
 /**
  * Realisation of Stack based on
  * ArrayList with dynamic capacity
+ *
  * @param <T>
  */
 
@@ -24,27 +24,8 @@ public class UnsizedArrayList<T> implements Stack<T> {
         this.values = new ArrayList<>(capacity);
     }
 
-    public UnsizedArrayList(int capacity) throws IllegalCapacityValueException {
-        if (capacity <= 0) {
-            throw new IllegalCapacityValueException();
-        }
-        this.capacity = capacity;
-        this.values = new ArrayList<>(capacity);
-    }
-
     public UnsizedArrayList(List<T> array) {
         this.capacity = defaultCapacity;
-        for (T element : array) {
-            this.push(element);
-        }
-    }
-
-    public UnsizedArrayList(List<T> array, int capacity)
-            throws IllegalCapacityValueException {
-        if (capacity <= 0) {
-            throw new IllegalCapacityValueException();
-        }
-        this.capacity = capacity;
         for (T element : array) {
             this.push(element);
         }
@@ -64,9 +45,9 @@ public class UnsizedArrayList<T> implements Stack<T> {
         if (length == 0) {
             throw new EmptyCollectionException();
         }
-        T value = values.get(0);
-        values.remove(0);
         length--;
+        T value = values.get(length);
+        values.remove(length);
         return value;
     }
 
@@ -75,7 +56,7 @@ public class UnsizedArrayList<T> implements Stack<T> {
         if (length == 0) {
             throw new EmptyCollectionException();
         }
-        return values.get(0);
+        return values.get(length-1);
     }
 
     @Override
@@ -93,7 +74,17 @@ public class UnsizedArrayList<T> implements Stack<T> {
         return length == capacity;
     }
 
-    public void ensureCapacity(){
+    public void ensureCapacity() {
         capacity += defaultCapacity + capacity / 2;
+        List<T> list = new ArrayList<>(capacity);
+        list.addAll(values);
+        values = list;
+    }
+
+    public void ensureCapacity(int capacity) {
+        this.capacity = capacity;
+        List<T> list = new ArrayList<>(capacity);
+        list.addAll(values);
+        values = list;
     }
 }

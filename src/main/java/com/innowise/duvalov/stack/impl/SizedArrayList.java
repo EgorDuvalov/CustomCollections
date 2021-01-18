@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Realisation of Stack based on
  * ArrayList with set capacity
+ *
  * @param <T>
  */
 
@@ -66,9 +67,9 @@ public class SizedArrayList<T> implements Stack<T> {
         if (length == 0) {
             throw new EmptyCollectionException();
         }
-        T value = values.get(0);
-        values.remove(0);
         length--;
+        T value = values.get(length);
+        values.remove(length);
         return value;
     }
 
@@ -77,7 +78,7 @@ public class SizedArrayList<T> implements Stack<T> {
         if (length == 0) {
             throw new EmptyCollectionException();
         }
-        return values.get(0);
+        return values.get(length - 1);
     }
 
     @Override
