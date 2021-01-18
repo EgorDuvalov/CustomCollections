@@ -11,6 +11,7 @@ import java.util.ArrayList;
 /**
  * Realisation of Stack based on
  * LinkedList
+ *
  * @param <T>
  */
 
@@ -22,27 +23,11 @@ public class LinkedList<T> implements Stack<T> {
     public LinkedList() {
     }
 
-    public LinkedList(int capacity) throws IllegalCapacityValueException {
-        if (capacity > 0) {
-            this.capacity = capacity;
-        }
-        throw new IllegalCapacityValueException();
+    public LinkedList(int capacity) {
+        checkCapacityValue(capacity);
     }
 
-    public LinkedList(ArrayList<T> array)
-            throws ExceedCapacityException {
-        for (T element : array) {
-            push(element);
-        }
-    }
-
-    public LinkedList(ArrayList<T> array, int capacity)
-            throws ExceedCapacityException, IllegalCapacityValueException {
-        if (capacity > 0) {
-            this.capacity = capacity;
-        } else {
-            throw new IllegalCapacityValueException();
-        }
+    public LinkedList(ArrayList<T> array) {
         for (T element : array) {
             push(element);
         }
@@ -92,13 +77,13 @@ public class LinkedList<T> implements Stack<T> {
         }
         return amount == capacity;
     }
-}
 
-/* pop for queue
-            Node<T> runner = topNode;
-            while (runner.getNextNode().hasNext()) {
-                runner = runner.getNextNode();
-            }
-            value = runner.getNextNode().getValue();
-            runner.setNextNode(null);
-* */
+    public void checkCapacityValue(int capacity)
+            throws IllegalCapacityValueException {
+        if (capacity > 0) {
+            this.capacity = capacity;
+        } else {
+            throw new IllegalCapacityValueException();
+        }
+    }
+}

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 /**
  * Realisation of Queue based on
  * LinkedList
+ *
  * @param <T>
  */
 
@@ -23,32 +24,16 @@ public class LinkedList<T> implements Queue<T> {
     public LinkedList() {
     }
 
-    public LinkedList(int capacity) throws IllegalCapacityValueException {
-        if (capacity > 0) {
-            this.capacity = capacity;
-        }
-        throw new IllegalCapacityValueException();
+    public LinkedList(int capacity) {
+        checkCapacityValue(capacity);
     }
 
-    public LinkedList(ArrayList<T> array)
-            throws ExceedCapacityException {
+    public LinkedList(ArrayList<T> array) {
         for (T element : array) {
+            capacity++;
             enqueue(element);
         }
     }
-
-    public LinkedList(ArrayList<T> array, int capacity)
-            throws ExceedCapacityException, IllegalCapacityValueException {
-        if (capacity > 0) {
-            this.capacity = capacity;
-        } else {
-            throw new IllegalCapacityValueException();
-        }
-        for (T element : array) {
-            enqueue(element);
-        }
-    }
-
 
     @Override
     public void enqueue(T element) throws ExceedCapacityException {
@@ -107,5 +92,14 @@ public class LinkedList<T> implements Queue<T> {
             throw new IllegalCapacityValueException();
         }
         return amount == capacity;
+    }
+
+    public void checkCapacityValue(int capacity)
+            throws IllegalCapacityValueException {
+        if (capacity > 0) {
+            this.capacity = capacity;
+        } else {
+            throw new IllegalCapacityValueException();
+        }
     }
 }
