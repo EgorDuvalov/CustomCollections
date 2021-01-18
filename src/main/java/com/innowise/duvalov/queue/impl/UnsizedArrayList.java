@@ -2,7 +2,6 @@ package com.innowise.duvalov.queue.impl;
 
 import com.innowise.duvalov.exception.EmptyCollectionException;
 import com.innowise.duvalov.exception.ExceedCapacityException;
-import com.innowise.duvalov.exception.IllegalCapacityValueException;
 import com.innowise.duvalov.queue.Queue;
 
 import java.util.ArrayList;
@@ -77,13 +76,6 @@ public class UnsizedArrayList<T> implements Queue<T> {
 
     public void ensureCapacity() {
         capacity += defaultCapacity + capacity / 2;
-        List<T> list = new ArrayList<>(capacity);
-        list.addAll(values);
-        values = list;
-    }
-
-    public void ensureCapacity(int capacity) {
-        this.capacity = capacity;
         List<T> list = new ArrayList<>(capacity);
         list.addAll(values);
         values = list;

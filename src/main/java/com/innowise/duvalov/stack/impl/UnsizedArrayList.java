@@ -80,11 +80,4 @@ public class UnsizedArrayList<T> implements Stack<T> {
         list.addAll(values);
         values = list;
     }
-
-    public void ensureCapacity(int capacity) {
-        this.capacity = capacity;
-        List<T> list = new ArrayList<>(capacity);
-        list.addAll(values);
-        values = list;
-    }
 }
