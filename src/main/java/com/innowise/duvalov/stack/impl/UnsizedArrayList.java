@@ -1,24 +1,30 @@
 package com.innowise.duvalov.stack.impl;
 
 import com.innowise.duvalov.exception.EmptyCollectionException;
-import com.innowise.duvalov.exception.ExceedCapacityException;
 import com.innowise.duvalov.exception.IllegalCapacityValueException;
 import com.innowise.duvalov.stack.Stack;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class StaticArrayStack<T> implements Stack<T> {
-    private ArrayList<T> values;
-    private final int capacity;
+/**
+ * Realisation of Stack based on
+ * ArrayList with dynamic capacity
+ * @param <T>
+ */
+
+public class UnsizedArrayList<T> implements Stack<T> {
+    private List<T> values;
+    private int capacity;
     private int length;
     private static final int defaultCapacity = 10;
 
-    public StaticArrayStack() {
+    public UnsizedArrayList() {
         this.capacity = defaultCapacity;
         this.values = new ArrayList<>(capacity);
     }
 
-    public StaticArrayStack(int capacity) throws IllegalCapacityValueException {
+    public UnsizedArrayList(int capacity) throws IllegalCapacityValueException {
         if (capacity <= 0) {
             throw new IllegalCapacityValueException();
         }
@@ -26,15 +32,15 @@ public class StaticArrayStack<T> implements Stack<T> {
         this.values = new ArrayList<>(capacity);
     }
 
-    public StaticArrayStack(ArrayList<T> array) throws ExceedCapacityException {
+    public UnsizedArrayList(List<T> array) {
         this.capacity = defaultCapacity;
         for (T element : array) {
             this.push(element);
         }
     }
 
-    public StaticArrayStack(ArrayList<T> array, int capacity)
-            throws ExceedCapacityException, IllegalCapacityValueException {
+    public UnsizedArrayList(List<T> array, int capacity)
+            throws IllegalCapacityValueException {
         if (capacity <= 0) {
             throw new IllegalCapacityValueException();
         }
@@ -45,9 +51,9 @@ public class StaticArrayStack<T> implements Stack<T> {
     }
 
     @Override
-    public void push(T element) throws ExceedCapacityException {
+    public void push(T element) {
         if (length == capacity) {
-            throw new ExceedCapacityException();
+            ensureCapacity();
         }
         values.add(element);
         length++;
@@ -85,5 +91,9 @@ public class StaticArrayStack<T> implements Stack<T> {
     @Override
     public boolean isFull() {
         return length == capacity;
+    }
+
+    public void ensureCapacity(){
+        capacity += defaultCapacity + capacity / 2;
     }
 }

@@ -1,23 +1,32 @@
 package com.innowise.duvalov.stack.impl;
 
 import com.innowise.duvalov.exception.EmptyCollectionException;
+import com.innowise.duvalov.exception.ExceedCapacityException;
 import com.innowise.duvalov.exception.IllegalCapacityValueException;
 import com.innowise.duvalov.stack.Stack;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-public class DynamicArrayStack<T> implements Stack<T> {
-    private ArrayList<T> values;
-    private int capacity;
+/**
+ * Realisation of Stack based on
+ * ArrayList with set capacity
+ * @param <T>
+ */
+
+public class SizedArrayList<T> implements Stack<T> {
+    private List<T> values;
+    private final int capacity;
     private int length;
     private static final int defaultCapacity = 10;
 
-    public DynamicArrayStack() {
+    public SizedArrayList() {
         this.capacity = defaultCapacity;
-        this.values = new ArrayList<>(capacity);
+        this.values = new ArrayList<>();
     }
 
-    public DynamicArrayStack(int capacity) throws IllegalCapacityValueException {
+    public SizedArrayList(int capacity) throws IllegalCapacityValueException {
         if (capacity <= 0) {
             throw new IllegalCapacityValueException();
         }
@@ -25,15 +34,15 @@ public class DynamicArrayStack<T> implements Stack<T> {
         this.values = new ArrayList<>(capacity);
     }
 
-    public DynamicArrayStack(ArrayList<T> array) {
+    public SizedArrayList(Collection<T> array) throws ExceedCapacityException {
         this.capacity = defaultCapacity;
         for (T element : array) {
             this.push(element);
         }
     }
 
-    public DynamicArrayStack(ArrayList<T> array, int capacity)
-            throws IllegalCapacityValueException {
+    public SizedArrayList(ArrayList<T> array, int capacity)
+            throws ExceedCapacityException, IllegalCapacityValueException {
         if (capacity <= 0) {
             throw new IllegalCapacityValueException();
         }
@@ -44,10 +53,9 @@ public class DynamicArrayStack<T> implements Stack<T> {
     }
 
     @Override
-    public void push(T element) {
+    public void push(T element) throws ExceedCapacityException {
         if (length == capacity) {
-            capacity += defaultCapacity + capacity / 2;
-            values.ensureCapacity(capacity);
+            throw new ExceedCapacityException();
         }
         values.add(element);
         length++;

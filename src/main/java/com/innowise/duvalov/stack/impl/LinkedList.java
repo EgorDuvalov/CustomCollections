@@ -9,34 +9,34 @@ import com.innowise.duvalov.stack.Stack;
 import java.util.ArrayList;
 
 /**
- * Stack...
- *
+ * Realisation of Stack based on
+ * LinkedList
  * @param <T>
  */
 
-public class LinkedStack<T> implements Stack<T> {
+public class LinkedList<T> implements Stack<T> {
     private Node<T> topNode;
     private int amount = 0; // amount of Nodes
     private int capacity = 0;
 
-    public LinkedStack() {
+    public LinkedList() {
     }
 
-    public LinkedStack(int capacity) throws IllegalCapacityValueException {
+    public LinkedList(int capacity) throws IllegalCapacityValueException {
         if (capacity > 0) {
             this.capacity = capacity;
         }
         throw new IllegalCapacityValueException();
     }
 
-    public LinkedStack(ArrayList<T> array)
+    public LinkedList(ArrayList<T> array)
             throws ExceedCapacityException {
         for (T element : array) {
             push(element);
         }
     }
 
-    public LinkedStack(ArrayList<T> array, int capacity)
+    public LinkedList(ArrayList<T> array, int capacity)
             throws ExceedCapacityException, IllegalCapacityValueException {
         if (capacity > 0) {
             this.capacity = capacity;
