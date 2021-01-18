@@ -18,7 +18,7 @@ import java.util.List;
 
 public class SizedArrayList<T> implements Stack<T> {
     private List<T> values;
-    private final int capacity;
+    private int capacity;
     private int length;
     private static final int defaultCapacity = 10;
 
@@ -27,28 +27,14 @@ public class SizedArrayList<T> implements Stack<T> {
         this.values = new ArrayList<>();
     }
 
-    public SizedArrayList(int capacity) throws IllegalCapacityValueException {
-        if (capacity <= 0) {
-            throw new IllegalCapacityValueException();
-        }
-        this.capacity = capacity;
-        this.values = new ArrayList<>(capacity);
+    public SizedArrayList(int capacity) {
+        checkCapacityValue(capacity);
+        this.values = new ArrayList<>(this.capacity);
     }
 
-    public SizedArrayList(Collection<T> array) throws ExceedCapacityException {
-        this.capacity = defaultCapacity;
+    public SizedArrayList(Collection<T> array) {
         for (T element : array) {
-            this.push(element);
-        }
-    }
-
-    public SizedArrayList(ArrayList<T> array, int capacity)
-            throws ExceedCapacityException, IllegalCapacityValueException {
-        if (capacity <= 0) {
-            throw new IllegalCapacityValueException();
-        }
-        this.capacity = capacity;
-        for (T element : array) {
+            capacity++;
             this.push(element);
         }
     }
@@ -94,5 +80,14 @@ public class SizedArrayList<T> implements Stack<T> {
     @Override
     public boolean isFull() {
         return length == capacity;
+    }
+
+    public void checkCapacityValue(int capacity)
+            throws IllegalCapacityValueException {
+        if (capacity > 0) {
+            this.capacity = capacity;
+        } else {
+            throw new IllegalCapacityValueException();
+        }
     }
 }
