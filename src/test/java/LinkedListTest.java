@@ -17,4 +17,13 @@ public class LinkedListTest {
         Queue<String> test = new com.innowise.duvalov.queue.impl.LinkedList<>();
         Assert.assertTrue(test.isEmpty());
     }
+
+    @Test
+    public void testLinkedList3() {
+        Stack<Integer> stackTest = new LinkedList<>();
+        Queue<Integer> queueTest = new com.innowise.duvalov.queue.impl.LinkedList<>();
+        Integer[] testArr = {55,555,5555,5};
+        stackTest.push(testArr);
+        queueTest.enqueue(testArr);
+    }
 }
