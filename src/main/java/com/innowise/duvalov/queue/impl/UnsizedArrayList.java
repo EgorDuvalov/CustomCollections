@@ -43,6 +43,13 @@ public class UnsizedArrayList<T> implements Queue<T> {
     }
 
     @Override
+    public void enqueue(T[] array) {
+        for (T element : array) {
+            enqueue(element);
+        }
+    }
+
+    @Override
     public T dequeue() throws EmptyCollectionException {
         if (length == 0) {
             throw new EmptyCollectionException();

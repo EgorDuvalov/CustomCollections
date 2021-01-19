@@ -56,6 +56,13 @@ public class LinkedList<T> implements Queue<T> {
     }
 
     @Override
+    public void enqueue(T[] array){
+        for(T element : array){
+            enqueue(element);
+        }
+    }
+
+    @Override
     public T dequeue() throws EmptyCollectionException {
         if (topNode == null) {
             throw new EmptyCollectionException();

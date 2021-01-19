@@ -7,6 +7,8 @@ import com.innowise.duvalov.exception.IllegalCapacityValueException;
 public interface Queue<T> {
     void enqueue(T element) throws ExceedCapacityException;
 
+    void enqueue(T[] element);
+
     T dequeue() throws EmptyCollectionException;
 
     T peek() throws EmptyCollectionException;

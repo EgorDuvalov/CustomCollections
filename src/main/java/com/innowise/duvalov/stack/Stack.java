@@ -8,6 +8,8 @@ import com.innowise.duvalov.exception.IllegalCapacityValueException;
 public interface Stack<T> {
     void push(T element) throws ExceedCapacityException;
 
+    void push(T[] array);
+
     T pop() throws EmptyCollectionException;
 
     T peek() throws EmptyCollectionException;

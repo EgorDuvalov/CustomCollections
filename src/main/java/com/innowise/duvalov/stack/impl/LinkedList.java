@@ -6,8 +6,6 @@ import com.innowise.duvalov.exception.IllegalCapacityValueException;
 import com.innowise.duvalov.node.Node;
 import com.innowise.duvalov.stack.Stack;
 
-import java.util.ArrayList;
-
 /**
  * Realisation of Stack based on
  * LinkedList
@@ -44,6 +42,13 @@ public class LinkedList<T> implements Stack<T> {
         } else {
             topNode = new Node<>(element, topNode);
             amount++;
+        }
+    }
+
+    @Override
+    public void push(T[] array){
+        for(T element : array){
+            push(element);
         }
     }
 

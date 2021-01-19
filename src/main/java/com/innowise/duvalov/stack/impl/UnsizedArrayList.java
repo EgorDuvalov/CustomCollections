@@ -25,8 +25,8 @@ public class UnsizedArrayList<T> implements Stack<T> {
     }
 
     public UnsizedArrayList(T[] array) {
-        capacity=array.length;
-        this.values= new ArrayList<>(capacity);
+        capacity = array.length;
+        this.values = new ArrayList<>(capacity);
         for (T element : array) {
             this.push(element);
         }
@@ -39,6 +39,13 @@ public class UnsizedArrayList<T> implements Stack<T> {
         }
         values.add(element);
         length++;
+    }
+
+    @Override
+    public void push(T[] array) {
+        for (T element : array) {
+            push(element);
+        }
     }
 
     @Override
@@ -57,7 +64,7 @@ public class UnsizedArrayList<T> implements Stack<T> {
         if (length == 0) {
             throw new EmptyCollectionException();
         }
-        return values.get(length-1);
+        return values.get(length - 1);
     }
 
     @Override

@@ -49,6 +49,13 @@ public class SizedArrayList<T> implements Stack<T> {
     }
 
     @Override
+    public void push(T[] array) {
+        for (T element : array) {
+            push(element);
+        }
+    }
+
+    @Override
     public T pop() throws EmptyCollectionException {
         if (length == 0) {
             throw new EmptyCollectionException();
